@@ -1,0 +1,13 @@
+apiVersion: postgresql.sql.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: postgres-db
+  namespace: crossplane-system
+spec:
+  credentials:
+    connectionSecretRef:
+      name: example-secret
+      namespace: platform
+    source: PostgreSQLConnectionSecret
+  sslMode: disable
+  defaultDatabase: mydb

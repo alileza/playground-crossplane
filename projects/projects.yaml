@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Platform services
+  # Allow manifests to deploy from specified Git repos
+  sourceRepos:
+  - https://github.com/alileza/crossplane-example.git
+
+  # Only permit applications to deploy to the platform namespace in the same cluster
+  destinations:
+  - namespace: platform
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
