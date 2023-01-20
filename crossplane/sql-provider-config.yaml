@@ -7,7 +7,7 @@ spec:
   credentials:
     connectionSecretRef:
       name: example-secret
-      namespace: platform
+      namespace: crossplane-system
     source: PostgreSQLConnectionSecret
   sslMode: disable
   defaultDatabase: mydb
